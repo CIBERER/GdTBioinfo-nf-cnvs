@@ -26,6 +26,6 @@ El PR lo revisaremos los coordinadores del proyecto para asegurarnos que todo es
 
 Hemos preparado una pequeña introducción a Nextflow que os servirá para poder empezar a trabajar. En el [repositorio](https://github.com/yocra3/nextflow_introduction/) encontraréis una presentación powerpoint y unos cuántos ejemplos de scripts en nextflow. Estos scripts se pueden ejecutar y servirán para profundizar en el aprendizaje. En la presentación se incluyen diferentes enlaces con otros recursos para seguir aprendiendo.
 
-Si ya tenemos conocimiento de nextflow, el siguiente paso es empezar a implementar un módulo. Los módulos implican principalmente la definición de un proceso y la implementación de los tests. La implementación de los tests comporta definir canales y ejecutar procesos. Por lo tanto, aprenderemos a trabajar con las dos partes principales de nextflow, en un escenario simple.
+Si ya tenemos conocimiento de nextflow, el siguiente paso es empezar a implementar un [módulo](https://github.com/yocra3/structural_variants_ciberer/blob/master/docs/new_modules.md). Los módulos implican principalmente la definición de un proceso y la implementación de los tests. La implementación de los tests comporta definir canales y ejecutar procesos. Por lo tanto, aprenderemos a trabajar con las dos partes principales de nextflow, en un escenario simple.
 
 Finalmente, ya podremos pasar a definir subworkflows. Los subworkflows implican diferentes procesos y habitualmente requirirán el manejo y transformación de canales, tareas de mayor complejidad.
