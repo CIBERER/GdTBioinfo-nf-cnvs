@@ -25,5 +25,6 @@ hs_err_pid*
 ## Nextflow execution folders
 work/
 .nextflow/
+.nextflow*
 results/
 data/
