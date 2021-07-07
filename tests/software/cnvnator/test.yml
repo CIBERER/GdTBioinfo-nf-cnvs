@@ -1,0 +1,7 @@
+- name: cnvnator test_cnvnator
+  command: nextflow run tests/software/cnvnator -entry test_cnvnator -c tests/config/nextflow.config
+  tags:
+    - cnvnator
+  files:
+    - path: output/cnvnator/test.txt
+      md5sum: c12adedb52abc01eb5dcbdea6c64128f
