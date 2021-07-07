@@ -1,0 +1,57 @@
+name: cnvnator
+description: Implement all steps of cnvnator anaylsis
+keywords:
+  - Copy number variants
+  - Variant calling
+tools:
+  - cnvnator:
+      description: Tool for calling copy number variations.
+      homepage: None
+      documentation: None
+      tool_dev_url: None
+      doi: ""
+      licence: ['MIT']
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - bam:
+      type: Alignment file
+      description: BAM file
+      pattern: "*.bam"
+  - bai:
+      type: Index of alignment file
+      description: BAI file
+      pattern: "*.bai"
+  - fasta:
+      type: Fasta files
+      descriptions: List of fasta files for each chromosome
+      pattern: "*.fasta"
+  - genome:
+      type: value
+      descriptions: String with the reference genome.
+  - bin_size:
+      type: numeric
+      descriptions: Size of the window used to define the CNVs.
+
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - version:
+      type: file
+      description: File containing software version
+      pattern: "*.{version.txt}"
+  - txt:
+      type: file
+      description: Output of cnvnator
+      pattern: "*.txt"
+
+authors:
+  - "@yocra3"
