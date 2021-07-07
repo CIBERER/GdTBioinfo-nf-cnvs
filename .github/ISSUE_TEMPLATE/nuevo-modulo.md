@@ -15,9 +15,13 @@ Especificar qué programa se quiere implementar en el módulo, la versión y el 
 
 Especificar los parámetros que son necesarios para la ejecución del software. Los opcionales se pasarán a través de nextflow. 
 
-## Inputs y outputs
+## Inputs 
 
-Especificar que inputs necesita el módulo y qué outputs se tienen que capturar.
+Especificar qué inputs necesita el módulo, definiendo cuáles vienen del mismo canal.
+
+## Outputs
+
+Especificar qué outputs se tienen que capturar, incluyendo como se tienen que agrupar.
 
 ## Checklist
 [ ] El módulo funciona en local
