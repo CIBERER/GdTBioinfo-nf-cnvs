@@ -15,7 +15,7 @@ Las instrucciones generales para las contribuciones están en [README.md](https:
 Closes #XXX <!-- Añadir el issue relacionado con el PR -->
 
 - [ ] Hay una descripción de los cambios hechos o del código añadido.
-- [ ] El código está testeado, aunque sea en local.
+- [ ] El código está testeado.
 
 ## Checklist modulo
 - [ ] Se han seguido las convenciones de [crear un módulo](https://github.com/yocra3/structural_variants_ciberer/blob/master/docs/new_modules.md)
