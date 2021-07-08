@@ -26,6 +26,12 @@ Si el programa que queremos implementar tiene varias funcionalidades (p.e. gatk)
 nf-core modules create . --tool cot/filter
 ```
 
+Si queremos hacer un módulo que ejecute un script, usaremos el nombre del lenguaje y un nombre para el script:
+
+```
+nf-core modules create . --tool python/formatcalls
+```
+
 En ambos casos, se ejecutará una herramienta que nos llevará paso a paso en la generación del módulo. Importante: el nombre del módulo será siempre en minúscula y sin signos de puntuación. En caso contrario, recibiremos un mensaje de advertencia y una nueva propuesta de nombre. 
 
 El primer paso que hará la herramienta es comprobar si el programa que queremos implementar está en bioconda y/o Biocontainers. En caso afirmativo, añadirá la referencia correspondiente a los archivos. En caso contrario, nos pedirá que añadamos una referencia de Bioconda:
