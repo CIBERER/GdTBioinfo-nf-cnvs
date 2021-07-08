@@ -117,7 +117,7 @@ IMPORTANTE: Si queremos implementar en un módulo un script nuestro (p.e. un scr
 miScript.py input par1
 ```
 
-No obstante, el script debe estar localizado en la carpeta `/bin` de la raíz (ver #XX).
+No obstante, el script debe estar localizado en la carpeta `/bin` de la raíz (ver [PR formatcnvnator](https://github.com/yocra3/structural_variants_ciberer/pull/7)).
 
 ### Archivo softare/tool/meta.yml
 
