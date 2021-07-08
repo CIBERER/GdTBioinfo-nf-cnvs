@@ -3,5 +3,5 @@
   tags:
     - cnvnator
   files:
-    - path: output/cnvnator/test.txt
+    - path: output/cnvnator/test.cnvnator_output.txt
       md5sum: c12adedb52abc01eb5dcbdea6c64128f

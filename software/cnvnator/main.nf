@@ -25,7 +25,7 @@ process CNVNATOR {
     val(bin_size)
 
     output:
-    tuple val(meta), path("*.txt"), emit: txt
+    tuple val(meta), path("*.cnvnator_output.txt"), emit: txt
     path "*.version.txt"          , emit: version
 
     script:
@@ -37,7 +37,7 @@ process CNVNATOR {
     cnvnator -genome $genome -root ${meta.id}.root -his $bin_size
     cnvnator -root "${meta.id}.root" -stat $bin_size
     cnvnator -root "${meta.id}.root" -partition $bin_size -ngc
-    cnvnator -root "${meta.id}.root" -call $bin_size -ngc > ${prefix}.txt
+    cnvnator -root "${meta.id}.root" -call $bin_size -ngc > ${prefix}.cnvnator_output.txt
 
     echo \$(cnvnator 2>&1) | sed 's/^.*CNVnator //; s/Usage.*//; s/Using.*\$//' > ${software}.version.txt
     """
