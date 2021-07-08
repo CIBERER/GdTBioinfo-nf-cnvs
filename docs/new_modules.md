@@ -6,7 +6,7 @@ Para implementar un nuevo módulo, seguiremos el formato definido en nf-core. Pa
 
 Si entramos en el repositorio de nf-core y vemos que el módulo ya esta implementado, podemos añadirlo directamente usando [nf-core tools](https://github.com/nf-core/modules#using-existing-modules). Una vez importado al repositorio, haremos un PR y ya podemos cerrar el issue.
 
-IMPORTANTE: Para incorporar el módulo de esta manera, hay que asegurarse que el módulo que importamos tiene la funcionalidad que necesitamos. Hay algunos programas, como por ejemplo gatk, que tienen diferente módulos para las diferentes funciones. 
+IMPORTANTE: Hay que asegurarse que el módulo que importamos tiene la funcionalidad que necesitamos. Hay algunos programas, como por ejemplo gatk, que tienen diferente módulos para las diferentes funciones. 
 
 ## Módulo no implementado en nf-core
 
@@ -109,7 +109,15 @@ En el apartado outputs NUNCA incluiremos archivos que estaban en el input. Por e
 
 #### Script
 
-En este trozo meteremos el código que queremos ejecutar. Basándonos en el ejemplo, podemos ver como pasar otros argumentos o como aprovechar para nombrar los archivos. 
+En este trozo meteremos el código que queremos ejecutar. Basándonos en el ejemplo, podemos ver como pasar otros argumentos o como nombrar los archivos. 
+
+IMPORTANTE: Si queremos implementar en un módulo un script nuestro (p.e. un script de python o R), podemos llamar al script directamente como haríamos con un proceso de dsl1:
+
+```
+miScript.py input par1
+```
+
+No obstante, el script debe estar localizado en la carpeta `/bin` de la raíz (ver #XX).
 
 ### Archivo softare/tool/meta.yml
 
@@ -120,6 +128,13 @@ Este archivo contiene la documentación del módulo. Es muy importante rellenarl
 En este archivo, añadiremos los tests para testear nuestro módulo. Cada test se implementa en un workflow de nextflow con un nombre diferente. Por defecto hay un solo workflow implementado pero podemos implementar cuántos sean necesarios. Se recomienda utilizar los archivos de prueba que vienen distribuidos por [nf-core](https://github.com/nf-core/test-datasets/tree/modules). En el README, podemos ver los archivos que hay disponibles y una pequeña descripción. Hay que tener en cuenta que estos archivos han sido incluídos como muestras mínimas para comprobar que el código se ejecuta sin fallos y no para obtener resultados significativos. 
 
 Para acceder a los datos, se puede usar el diccionar `params.test_data` que está definido en el archivo `tests/config/test_data.config`. En caso que se necesitaran unos archivos preprocesados, se puede incluir algún paso previo adicional en el workflow. Por ejemplo, si estamos implementando un módulo para indexar un bam, pero solo tuviéramos fastqs, podríamos primero generar el bam y luego testear si se genera el índice.
+
+IMPORTANTE: Si queremos testear un módulo con script nuestro (p.e. un script de python o R), tenemos que añadir un enlace simbólico a la carpeta `/bin` de la raíz en la carpeta de test. En este ejemplo:
+
+```
+ln -s $REPO_HOME/bin/ tests/software/tool/bin
+```
+
 
 ### Archivo tests/software/tool/test.yml
 
