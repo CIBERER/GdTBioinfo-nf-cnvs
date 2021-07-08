@@ -1,0 +1,33 @@
+name: python_formatcnvnator
+description: Format cnvnator output based on pỳthon script from TCAG pipeline (https://github.com/bjtrost/TCAG-WGS-CNV-workflow/)
+keywords:
+  - format
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - cnvnator_res:
+      type: text file
+      description: Output of cnvnator
+      pattern: "*.txt"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - version:
+      type: file
+      description: File containing software version
+      pattern: "*.{version.txt}"
+  - cnvnator_format:
+      type: text file
+      description: Output of cnvnator with correct format
+      pattern: "*.cnvnator_formated.txt"
+
+authors:
+  - "@yocra3"
