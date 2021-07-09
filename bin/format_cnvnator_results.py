@@ -20,13 +20,13 @@ default_header_index={"CNV_type":0,"coordinates":1,"CNV_size":2,"normalized_RD":
 
 header_index = {}
 for c in coi:
-	header_index[c] = -1
+	header_index[c] = default_header_index[c]
 
 in_file = sys.argv[1]
 out_file = sys.argv[2]
 
 if not os.path.isfile(in_file):
-    print( "erds output not found ...")
+    print( "CNVnator output not found ...")
     sys.exit(1)
 if os.path.isfile(out_file):
     print( "Delete file", out_file, "and rerun")
@@ -51,22 +51,16 @@ header_flag = 0
 for line in i_file:
 	line = line.replace("\n","")
 	words = line.replace("#","").split("\t")
-	if line[0] == "#":
+	if header_flag == 0 and line[0] == "#":
 		if words[0] == "#CNV_type":
 			for i in range (0,len(words)):
-				if header_index.has_key(words[i]):
+				if words[i] in header_index:
 					header_index[words[i]] = i
 			for c in coi:
 				if header_index[c] == -1:
 					print ("Column header ", c, " not found in file")
 					sys.exit(0)
-
 			header_flag = 1
-	elif header_flag == 0:
-		print("Warning: Header not found, using default..")
-		for c in coi:
-			header_index[c] = default_header_index[c]
-		header_flag = 2
 	else:
 		type = format[words[header_index["CNV_type"]]]
 		coordinates = words[header_index["coordinates"]].split(":")
