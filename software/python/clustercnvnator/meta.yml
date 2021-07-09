@@ -1,0 +1,36 @@
+name: python_clustercnvnator
+description: Cluster calls from formatcnvnator output based on pỳthon script from TCAG pipeline (https://github.com/bjtrost/TCAG-WGS-CNV-workflow/)
+keywords:
+  - cnvnator
+
+input:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - cnvnator_format:
+      type: text file
+      description: Output of formatcnvnator
+      pattern: "*.txt"
+  - gapsRef:
+      type: text file
+      description: File with coordinates for gaps and complex regions. It should contain four columns: chromosome, start, end and region name.
+      pattern: "*.txt"
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - version:
+      type: file
+      description: File containing software version
+      pattern: "*.{version.txt}"
+  - cnvnator_cluster:
+      type: text file
+      description: Output of cnvnator with correct format
+      pattern: "*cluster.txt"
+
+authors:
+  - "@yocra3"

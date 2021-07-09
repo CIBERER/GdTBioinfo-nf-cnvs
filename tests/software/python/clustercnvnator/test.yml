@@ -1,0 +1,8 @@
+- name: python clustercnvnator test_python_clustercnvnator
+  command: nextflow run tests/software/python/clustercnvnator -entry test_python_clustercnvnator -c tests/config/nextflow.config
+  tags:
+    - python/clustercnvnator
+    - python
+  files:
+    - path: output/python/merged/test.cnvnator_formated.txt.cluster.txt
+      md5sum: bc35c0e4edbd463ae394fb58c15bad70
