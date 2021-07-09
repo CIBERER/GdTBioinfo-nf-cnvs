@@ -146,10 +146,10 @@ ln -s ../../../bin bin
 Este archivo guarda los md5sums de los archivos generados en los tests para asegurar la consistencia de las ejecuciones. La mejor manera de generarlo, es usando el comando que viene en nf-core tools:
 
 ```
-nf-core modules create-test-yml
+nf-core modules create-test-yml -t tool/subtool
 ```
 
-Con esta herramiento, podremos elegir el módulo que queremos testear. Como la herramienta principal ya genera este archivo, es mejor que le pidamos que nos los sobreescriba. 
+Con esta herramienta, podremos elegir el módulo que queremos testear. Como la herramienta principal ya genera este archivo, pediremos que nos los sobreescriba. 
 
 La función nos ejecutará el test (con el contenedor que elijamos) y registrará el md5sum de todos los archivos que se encuentren en la carpeta. En la herramienta, nos indicará la carpeta temporal donde guarda nextflow los archivos de la ejecución:
 
@@ -162,7 +162,14 @@ INFO     Writing to 'tests/software/cot/test.yml'
 ```
 Podemos explorar los archivos de esta carpeta para asegurarnos que el programa se ha ejecutado como esperamos. Una vez hemos ejecutado esta herramienta, debemos ir al archivo tests/software/tool/test.yml (que ahora tendrá otros valores) y eliminar aquellas líneas que pudieran ser innecesarias, por describir algunos archivos que no necesitamos. 
 
+La función create-test-yml nos ejecutará el código directamente. No obstante, puede ser que tengamos errores de ejecución debido a errores en el código. Si queremos ejecutar el código de test podemos usar el siguiente comando:
+
+```
+ nextflow run tests/software/tool/subtool/ -entry test_tool_subtool -c test.config -profile docker -resume   
+ ```
+ `tests/software/tool/subtool/` es la carpeta del archivo de test que querramos probar. `-entry` nos marca el workflow del archivo test que queremos ejecutar. Este paso correrá el script en la carpeta base, generando cada proceso una carpeta en el directorio `work`, lo que nos facilitará depurar errores en nuestro código. 
+ 
 
 ## Finalizar módulo
 
-Una vez cumplidos todos estos pasos, ya podremos hacer un PR con los nuevos archivos, como está explicado en el [README](https://github.com/yocra3/structural_variants_ciberer/blob/master/README.md) principal. Si el PR se acepta, ya podremos cerrar el issue correspondiente.
+Una vez cumplidos todos estos pasos, ya podremos hacer un PR con los nuevos archivos, como está explicado en el [README](https://github.com/yocra3/structural_variants_ciberer/blob/master/README.md) principal. Si el PR se acepta, se cerrará el issue correspondiente.
