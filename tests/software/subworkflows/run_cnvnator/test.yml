@@ -1,0 +1,12 @@
+- name: subworkflows run_cnvnator test_subworkflow_runcnvnator
+  command: nextflow run tests/software/subworkflows/run_cnvnator -entry test_subworkflow_runcnvnator -c tests/config/nextflow.config
+  tags:
+    - subworkflows/run_cnvnator
+    - subworkflows
+  files:
+    - path: output/cnvnator/test.cnvnator_output.txt
+      md5sum: c12adedb52abc01eb5dcbdea6c64128f
+    - path: output/python/merged/test.cnvnator_formated.txt.cluster.txt
+      md5sum: bc35c0e4edbd463ae394fb58c15bad70
+    - path: output/python/test.cnvnator_formated.txt
+      md5sum: 36b1755d1598e49188debd1dac39c1a0
