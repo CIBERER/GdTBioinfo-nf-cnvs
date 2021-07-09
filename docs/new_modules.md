@@ -135,12 +135,11 @@ En este archivo, añadiremos los tests para testear nuestro módulo. Cada test s
 
 Para acceder a los datos, se puede usar el diccionar `params.test_data` que está definido en el archivo `tests/config/test_data.config`. En caso que se necesitaran unos archivos preprocesados, se puede incluir algún paso previo adicional en el workflow. Por ejemplo, si estamos implementando un módulo para indexar un bam, pero solo tuviéramos fastqs, podríamos primero generar el bam y luego testear si se genera el índice.
 
-IMPORTANTE: Si queremos testear un módulo con script nuestro (p.e. un script de python o R), tenemos que añadir un enlace simbólico a la carpeta `/bin` de la raíz en la carpeta de test. En este ejemplo:
+IMPORTANTE: Si queremos testear un módulo con script nuestro (p.e. un script de python o R), tenemos que añadir un enlace simbólico a la carpeta `/bin` de la raíz en la carpeta de test. Para ello, iremos a la carpeta `tests/software/tool/` y ejecutaremos :
 
 ```
-ln -s $REPO_HOME/bin/ tests/software/tool/bin
+ln -s ../../../bin bin
 ```
-
 
 ### Archivo tests/software/tool/test.yml
 
