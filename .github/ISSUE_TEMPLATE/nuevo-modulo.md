@@ -22,8 +22,3 @@ Especificar qué inputs necesita el módulo, definiendo cuáles vienen del mismo
 ## Outputs
 
 Especificar qué outputs se tienen que capturar, incluyendo como se tienen que agrupar.
-
-## Checklist
-[ ] El módulo funciona en local
-[ ] Los tests se pueden ejecutar con datos accesibles públicamente (en caso contrario, crear un issue para generar tests para el módulo)
-[ ] El módulo usa un contenedor de Bioconda y biocontainer (en caso contrario, crear un issue para crear el contenedor).
