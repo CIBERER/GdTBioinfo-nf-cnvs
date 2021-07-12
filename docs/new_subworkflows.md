@@ -2,9 +2,9 @@
 
 Para implementar un nuevo subworkflow, seguiremos el formato definido en el workflow de CNVNATOR. Podemos ver todos los archivos generados en el [Pull Request](https://github.com/yocra3/structural_variants_ciberer/pull/11) que cierra el [issue](https://github.com/yocra3/structural_variants_ciberer/issues/10). En este caso, no hay aún una herramiento de nf-core que nos genere los 3 archivos del subworkflow.
 
-## Definición del subworkflow (./software/subworkflows/new_subworkflow/main.nf)
+## Definición del subworkflow 
 
-Seguiremos una estructura de carpeta similar a la usada para los módulos. Así, pondremos los subworkflows en la carpeta subworkflows dentro de software. Generaremos una carpeta para cada subworkflow que contendrá sólo un archivo main.nf con la definición del subworkflow. Esto nos facilitará el testeo del código, ya que podremos usar las mismas herramientas de los módulos.
+Seguiremos una estructura de carpeta similar a la usada para los módulos. Así, pondremos los subworkflows en la carpeta subworkflows dentro de software. Generaremos una carpeta para cada subworkflow que contendrá sólo un archivo main.nf con la definición del subworkflow (p.e. `./software/subworkflows/new_subworkflow/main.nf`). Esto nos facilitará el testeo del código, ya que podremos usar las mismas herramientas de los módulos. 
 
 Los subworkflows deben contener un verbo que defina su función y que nos puede servir para diferenciarlos de los módulos.
 
@@ -56,9 +56,9 @@ Finalmente, definiremos los outputs del subworkflow. Esto lo podemos hacer con l
   cnvnator_orig        = CNVNATOR.out.txt                                 /// channel: [ val(meta), txt  ]
 ```
 
-## ./test/software/subworkflows/new_subworkflow/main.nf y ./test/software/subworkflows/new_subworkflow/test.yml
+## Archivos de test
 
-Estos archivos son equivalentes a los archivos de los tests para módulos y se puede encontrar más información en la sección de tests de la ayuda de [añadir nuevos módulos](https://github.com/yocra3/structural_variants_ciberer/blob/master/docs/new_modules.md#archivo-testssoftwaretoolmainnf). 
+Generaremos dos archivos para los tests: `./test/software/subworkflows/new_subworkflow/main.nf` y `./test/software/subworkflows/new_subworkflow/test.yml`. Estos archivos son equivalentes a los archivos de los tests para módulos y se puede encontrar más información en la sección de tests de la ayuda de [añadir nuevos módulos](https://github.com/yocra3/structural_variants_ciberer/blob/master/docs/new_modules.md#archivo-testssoftwaretoolmainnf). 
 
 ## Finalizar subworkflow
 
