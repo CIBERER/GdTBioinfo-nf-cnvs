@@ -10,7 +10,12 @@ IMPORTANTE: Hay que asegurarse que el módulo que importamos tiene la funcionali
 
 ## Módulo no implementado en nf-core
 
-En este caso, tendremos que implementar el módulo nosotros. En nf-core tools, han desarrollado una [plantilla](https://github.com/nf-core/modules#nf-core-modules-create) que nos ayudará en el proceso. Cada módulo implementa o un programa completo o una funcionalidad de un programa. El primer paso será clonar el repositorio [modules de nf-core](https://github.com/nf-core/modules). Una vez dentro del repositorio modules, ejecturemos la herramienta.
+En este caso, tendremos que implementar el módulo nosotros. El issue nos indicará el programa o la funcionalidad que debemos implementar, así como una guía de los parámetros, inputs y outputs que debe contener.
+
+IMPORTANTE: La información del issue es una guía que puede estar incompleta. Por un lado, algunos módulos será necesaría subdividirlos en varios módulos. Si esto se da, se deben crear los nuevos issues correspondientes a las diferentes partes. En otros casos, puede que sean necesarios más parámetros o inputs de los especificados. En consecuencia, el desarrollador es libre de añadir los inputs o outputs que considere necesarios para la correcta implementación del módulo. 
+
+
+En nf-core tools, han desarrollado una [plantilla](https://github.com/nf-core/modules#nf-core-modules-create) que nos ayudará en el proceso. Cada módulo implementa o un programa completo o una funcionalidad de un programa. El primer paso será clonar el repositorio [modules de nf-core](https://github.com/nf-core/modules). Una vez dentro del repositorio modules, ejecturemos la herramienta.
 
 IMPORTANTE: Hay que ejecutar la herramienta dentro del repositorio modules de nf-core. Si lo hacemos dentro de nuestro repositorio, no se generarán todos los archivos necesarios. Una vez la herramienta nos genere los archivos, copiaremos todos los archivos creados a nuestro repositorio. 
 
