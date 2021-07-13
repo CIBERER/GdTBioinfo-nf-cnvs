@@ -145,6 +145,8 @@ ln -s ../../../bin bin
 
 Tenemos un ejemplo en el [PR de formatcnvnator](https://github.com/yocra3/structural_variants_ciberer/pull/7).
 
+En algunos casos, tendremos un módulo que tendrá algún canal del input opcional. Si no queremos incluirlo, podemos pasar una lista vacía (`[]`) en su lugar. 
+
 ### Archivo tests/software/tool/test.yml
 
 Este archivo guarda los md5sums de los archivos generados en los tests para asegurar la consistencia de las ejecuciones. La mejor manera de generarlo, es usando el comando que viene en nf-core tools:
