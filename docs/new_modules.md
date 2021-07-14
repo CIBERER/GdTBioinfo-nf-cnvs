@@ -34,7 +34,7 @@ nf-core modules create . --tool cot/filter
 Si queremos hacer un módulo que ejecute un script, usaremos el nombre del lenguaje y un nombre para el script:
 
 ```
-nf-core modules create . --tool python/formatcalls
+nf-core modules create . --tool python/formatcnvcalls
 ```
 
 En ambos casos, se ejecutará una herramienta que nos llevará paso a paso en la generación del módulo. 
@@ -101,6 +101,8 @@ El archivo main.nf contiene la implementación del software que queremos ejecuta
 #### Container
 
 Si el programa que queremos implementar ya está en bioconda y Biocontainer, este trozo ya estará relleno y no tendremos que hacer nada. En caso contrario, tenemos que encapsular nosotros el software.
+
+SUGERENCIA: Si nuestro módulo consiste en un script de python, podemos probar con el paquete de Bioconda `bioconda-utils`. 
 
 La recomendación es crear una imagen de docker que contenga el software necesario para ejecutar el código. En el repositorio con la [introducción a nextflow](https://github.com/yocra3/nextflow_introduction/) y en [este enlace](https://github.com/seqeralabs/nextflow-tutorial#Docker-hands-on), encontraréis ayuda sobre como generar esta imagen y subirla a dockerhub. Una vez hecho esto, hay que cambiar todo el trozo del container por:
 
