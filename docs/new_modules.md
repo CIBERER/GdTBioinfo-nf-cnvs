@@ -12,7 +12,7 @@ IMPORTANTE: Hay que asegurarse que el módulo que importamos tiene la funcionali
 
 En este caso, tendremos que implementar el módulo nosotros. El issue nos indicará el programa o la funcionalidad que debemos implementar, así como una guía de los parámetros, inputs y outputs que debe contener.
 
-IMPORTANTE: La información del issue es una guía que puede estar incompleta. Por un lado, algunos módulos será necesaría subdividirlos en varios módulos. Si esto se da, se deben crear los nuevos issues correspondientes a las diferentes partes. En otros casos, puede que sean necesarios más parámetros o inputs de los especificados. En consecuencia, el desarrollador es libre de añadir los inputs o outputs que considere necesarios para la correcta implementación del módulo. 
+IMPORTANTE: La información del issue es una guía que puede estar incompleta. Por un lado, algunos módulos podría ser necesario subdividirlos en varios módulos. Si esto se da, se deben crear los nuevos issues correspondientes a las diferentes partes. En otros casos, puede que sean necesarios más parámetros o inputs de los especificados. En consecuencia, el desarrollador es libre de añadir los inputs o outputs que considere necesarios para la correcta implementación del módulo. 
 
 
 En nf-core tools, han desarrollado una [plantilla](https://github.com/nf-core/modules#nf-core-modules-create) que nos ayudará en el proceso. Cada módulo implementa o un programa completo o una funcionalidad de un programa. El primer paso será clonar el repositorio [modules de nf-core](https://github.com/nf-core/modules). Una vez dentro del repositorio modules, ejecturemos la herramienta.
@@ -120,7 +120,7 @@ Contiene los datos de entrada del módulo. Todos los archivos que hagan referenc
 
 Como mínimo, incluiremos los dos outputs que vienen en la plantilla. Un primer output con una tupla con el archivo (o archivos) de salida y el id y otra con el texto de la versión del software. Si nuestro proceso genera más de un tipo de archivo, generaremos varios outputs. Podemos usar expresiones regulares para seleccionar los archivos con una extensión determinada. Este proceso omite los archivos de input.
 
-IMPORTANTE: En el apartado outputs NUNCA incluiremos archivos que estaban en el input. Por ejemplo, si implementaremos un módulo para indexar un bam, el input sería id, bam y el output id, bai. Para sincronizar los bam y el bai, lo haremos a nivel de canales en el workflow. 
+IMPORTANTE: En el apartado outputs NUNCA incluiremos archivos que estaban en el input. Por ejemplo, si implementaramos un módulo para indexar un bam, el input sería id, bam y el output id, bai. Para sincronizar los bam y el bai, lo haremos a nivel de canales en el workflow. 
 
 #### Script
 
