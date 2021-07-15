@@ -9,7 +9,10 @@ En primer lugar, es necesario entrar en nuestros canales de [slack](https://join
 La metodología de trabajo consiste en realizar diferentes tares que se encuentran en el apartado [issues](https://github.com/yocra3/structural_variants_ciberer/issues). Los issues están clasificados en tres categorías principales.
 
 - Módulos: los módulos incorporan un nuevo software o comando al entorno de nextflow. Definen una tarea concreta que se ejecutará en nextflow. 
-- Subworkflows: los subworkflows son un conjunto de módulos que desempeñan una tarea concreta. 
+- Subworkflows: los subworkflows son un conjunto de módulos que desempeñan una tarea concreta. Cada herramienta para detectar variantes estructurales tendrá un subworkflow que contendrá 3 módulos:
+1. Ejecución de la herramienta
+2. Filtrado de los CNVs
+3. Conversión de los CNVs a un formato común.
 - Nuevo tool: Conjunto de subworkflows que llevan a cabo un análisis completo. 
 
 Una vez hemos decidido en qué issue queremos trabajar, debemos [asignarnos al issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/managing-issues/assigning-issues-and-pull-requests-to-other-github-users#assigning-an-individual-issue-or-pull-request). La asignación de los issues sirve para que el resto de colaboradores sepamos en qué issues se están trabajando y evitar duplicar trabajo. 
