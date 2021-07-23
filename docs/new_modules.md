@@ -126,6 +126,13 @@ IMPORTANTE: En el apartado outputs NUNCA incluiremos archivos que estaban en el 
 
 En este trozo meteremos el código que queremos ejecutar. Basándonos en el ejemplo, podemos ver como pasar otros argumentos o como nombrar los archivos. 
 
+IMPORTANTE: Para permitir que le podamos pasar en el futuro parámetros personalizados al modulo, hay que añadir `$options.args` dentro del comando:
+
+```
+runProgram input $options.args
+```
+Por defecto, este argumento se puede dejar vacío cuando no tenemos que pasar ningún parámetro.
+
 IMPORTANTE: Si queremos implementar en un módulo un script nuestro (p.e. un script de python o R), podemos llamar al script directamente como haríamos con un proceso de dsl1:
 
 ```
