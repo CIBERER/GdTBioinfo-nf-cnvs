@@ -1,0 +1,11 @@
+{
+    "name": "nf-core/structuralvariantsciberer",
+    "homePage": "https://github.com/nf-core/structuralvariantsciberer",
+    "repos": {
+        "nf-core/modules": {
+            "samtools/index": {
+                "git_sha": "1ad73f1b2abdea9398680d6d20014838135c9a35"
+            }
+        }
+    }
+}
