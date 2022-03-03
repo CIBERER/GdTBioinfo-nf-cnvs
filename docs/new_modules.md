@@ -80,21 +80,20 @@ A continuación nos saldrán los archivos que se han generado:
 
 ```
 INFO     Created / edited following files:                                                                                                                                                    create.py:239
-           ./software/cot/functions.nf                                                                                                                                                                     
-           ./software/cot/main.nf                                                                                                                                                                          
-           ./software/cot/meta.yml                                                                                                                                                                         
-           ./tests/software/cot/main.nf                                                                                                                                                                    
-           ./tests/software/cot/test.yml                                                                                                                                                                   
+           ./modules/cot/main.nf                                                                                                                                                                          
+           ./modules/cot/meta.yml                                                                                                                                                                         
+           ./tests/modules/cot/main.nf                                                                                                                                                                    
+           ./tests/modules/cot/test.yml                                                                                                                                                                   
            ./tests/config/pytest_software.yml     
 ```          
 
-IMPORTANTE: Si solo se ha generado 1 archivo (y no 6 como en el ejemplo), la herramienta no se ha ejecutado en el repositorio de nf-core modules. Hay que repetir todo el proceso desde el principio. 
+IMPORTANTE: Si solo se ha generado 1 archivo (y no 5 como en el ejemplo), la herramienta no se ha ejecutado en el repositorio de nf-core modules. Hay que repetir todo el proceso desde el principio. 
 
 A continuación, copiaremos todos los archivos manteniendo la estructura de carpeta, excepto `./tests/config/pytest_software.yml` al repositorio del CIBERER. Los archivos en la carpeta software, contienen el código y la documentación de nuestro módulo. Los archivos de la carpeta tests, tienen los tests para comprobar que los módulos funcionan.
 
-De los 5 archivos que copiaremos, hay que editarlos todos menos `./software/cot/functions.nf`. Tenemos una descripción más detallada de cada archivos y como editarlo en [nf-core](https://github.com/nf-core/modules#nf-core-modules-create), paso 6. Los archivos tienen unas líneas marcados con `//TO DO` que indican los trozos que tenemos que editar. 
+Hay que editar los 5 archivos que copiaremos. Tenemos una descripción más detallada de cada archivos y como editarlo en [nf-core](https://nf-co.re/developers/adding_modules#writing-a-new-module), paso 6. Los archivos tienen unas líneas marcados con `//TO DO` que indican los trozos que tenemos que editar. 
 
-### Archivo softare/tool/main.nf
+### Archivo modules/tool/main.nf
 
 El archivo main.nf contiene la implementación del software que queremos ejecutar. A continuación describiremos los puntos que hay que editar.
 
@@ -141,11 +140,11 @@ miScript.py input parametro
 
 No obstante, el script debe estar localizado en la carpeta `/bin` de la raíz (ver [PR formatcnvnator](https://github.com/yocra3/structural_variants_ciberer/pull/7)).
 
-### Archivo softare/tool/meta.yml
+### Archivo modules/tool/meta.yml
 
 Este archivo contiene la documentación del módulo. Es muy importante rellenarlo correctamente para que otros usuarios pueden utilizar el módulo en la pipeline. 
 
-### Archivo tests/software/tool/main.nf 
+### Archivo tests/modules/tool/main.nf 
 
 En este archivo, añadiremos los tests para testear nuestro módulo. Cada test se implementa en un workflow de nextflow con un nombre diferente. Por defecto hay un solo workflow implementado pero podemos implementar cuántos sean necesarios. Se recomienda utilizar los archivos de prueba que vienen distribuidos por [nf-core](https://github.com/nf-core/test-datasets/tree/modules). En el README, podemos ver los archivos que hay disponibles y una pequeña descripción. Hay que tener en cuenta que estos archivos han sido incluídos como muestras mínimas para comprobar que el código se ejecuta sin fallos y no para obtener resultados significativos. 
 
@@ -161,7 +160,7 @@ Tenemos un ejemplo en el [PR de formatcnvnator](https://github.com/yocra3/struct
 
 En algunos casos, tendremos un módulo que tendrá algún canal del input opcional. Si no queremos incluirlo, podemos pasar una lista vacía (`[]`) en su lugar. 
 
-### Archivo tests/software/tool/test.yml
+### Archivo tests/modules/tool/test.yml
 
 Este archivo guarda los md5sums de los archivos generados en los tests para asegurar la consistencia de las ejecuciones. La mejor manera de generarlo, es usando el comando que viene en nf-core tools:
 
@@ -175,10 +174,10 @@ La función nos ejecutará el test (con el contenedor que elijamos) y registrar�
 
 ```
 INFO     Running 'cot' test with command:                                                                                                                                           test_yml_builder.py:281
-         nextflow run tests/software/cot -entry test_cot -c tests/config/nextflow.config --outdir /tmp/tmpulk78b6n                                                                                         
+         nextflow run tests/modules/cot -entry test_cot -c tests/config/nextflow.config --outdir /tmp/tmpulk78b6n                                                                                         
 INFO     Repeating test ...                                                                                                                                                         test_yml_builder.py:284
 INFO     Test workflow finished!                                                                                                                                                    test_yml_builder.py:297
-INFO     Writing to 'tests/software/cot/test.yml'    
+INFO     Writing to 'tests/modules/cot/test.yml'    
 ```
 
 Podemos explorar los archivos de esta carpeta para asegurarnos que el programa se ha ejecutado como esperamos. Una vez hemos ejecutado esta herramienta, debemos ir al archivo tests/software/tool/test.yml (que ahora tendrá otros valores) y eliminar aquellas líneas que pudieran ser innecesarias, por describir algunos archivos que no necesitamos. 
@@ -186,9 +185,9 @@ Podemos explorar los archivos de esta carpeta para asegurarnos que el programa s
 La función create-test-yml nos ejecutará el código directamente. No obstante, puede ser que tengamos errores de ejecución debido a errores en el código. Si queremos ejecutar el código de test podemos usar el siguiente comando:
 
 ```
- nextflow run tests/software/tool/subtool/ -entry test_tool_subtool -c test.config -profile docker -resume   
+ nextflow run tests/modules/tool/subtool/ -entry test_tool_subtool -c test.config -profile docker -resume   
  ```
- `tests/software/tool/subtool/` es la carpeta del archivo de test que querramos probar. `-entry` nos marca el workflow del archivo test que queremos ejecutar. Este paso correrá el script en la carpeta base, generando cada proceso una carpeta en el directorio `work`, lo que nos facilitará depurar errores en nuestro código. 
+ `tests/modules/tool/subtool/` es la carpeta del archivo de test que querramos probar. `-entry` nos marca el workflow del archivo test que queremos ejecutar. Este paso correrá el script en la carpeta base, generando cada proceso una carpeta en el directorio `work`, lo que nos facilitará depurar errores en nuestro código. 
  
 
 ## Finalizar módulo
