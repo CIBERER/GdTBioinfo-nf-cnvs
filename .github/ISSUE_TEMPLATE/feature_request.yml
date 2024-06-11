@@ -1,0 +1,79 @@
+name: Feature-related
+description: Feature related issues in the development of the pipeline.
+title: "[FEATURE] <title>"
+labels: ["Module","Subworkflow","Structure","Refactor","Configuration"]
+body:
+- type: checkboxes
+  attributes:
+    label: Which type of feature are you implementing?
+    description: Please select the appropiate `Label`
+    options:
+    - label: I have selected (at least) one of the following `Label` for the feature
+      required: true
+- type: markdown
+  attributes:
+    value: |
+      - Module: Addition of a new module to the pipeline
+      - Subworkflow: Creation or modification of a subworkflow within the pipeline
+      - Pipeline structure: Related to the overall structure or architecture of the pipeline
+      - Refactor: Code refactoring to improve maintainability or readability
+      - Configuration: Related to configuring or parameterizing the pipeline components
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue / PR for this?
+    description: Please search to see if an issue / PR already exists for the feature suggested.
+    options:
+    - label: I have searched for existing issues.
+      required: true
+    - label: I have searched for existing PRs.
+      required: true
+- type: checkboxes
+  attributes:
+    label: Is there already an implementation for this feature?
+    description: Please search to see if it already exists an implementation for the feature suggested.
+    options:
+    - label: I have searched for existing [nf-modules](https://github.com/nf-core/modules/tree/master/modules/nf-core)
+      required: true
+    - label: I have searched for existing [biocontainers](https://quay.io/organization/biocontainers)
+      required: true
+- type: textarea
+  attributes:
+    label: Describe the feature
+    description: Provide a short single paragraph description for the feature.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Background
+    description: Provide any additional background for the feature.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Proposed implementation
+    description: Provide a short description of the proposed solution for the new feature.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Anything else?
+    description: |
+      Add any other context about the new feature here.
+
+      Tip: You can attach images by clicking this area to highlight it and then dragging files in.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Related Issues
+    description: |
+      If there are any related issues, please reference them here with `#ISSUE-NUMBER`.
+  validations:
+    required: false
+- type: checkboxes
+  attributes:
+    label: Are you going to work on this?
+    description: 
+    options:
+      - label: If I'm planning to work on this feature, I added myself to the `Assignees` to facilitate tracking who is working on this.
+        required: false
