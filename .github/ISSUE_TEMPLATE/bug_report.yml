@@ -1,0 +1,48 @@
+name: 🐞 Bug
+description: Report something that is broken or incorrect
+title: "[BUG] <title>"
+labels: ["Bug"]
+body:
+- type: checkboxes
+  attributes:
+    label: Is there an existing issue for this?
+    description: Please search to see if an issue already exists for the bug you encountered.
+    options:
+    - label: I have searched the existing issues
+      required: true
+- type: textarea
+  attributes:
+    label: Describe the bug
+    description: A clear and concise description of what the bug is.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Expected Behavior
+    description: A concise description of what you expected to happen.
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Steps To Reproduce
+    description: Steps to reproduce the behavior.
+    placeholder: |
+      > command used and terminal output
+  validations:
+    required: false
+- type: textarea
+  attributes:
+    label: Anything else?
+    description: |
+      Links? References? Anything that will give more context about the issue you are encountering.
+
+      Tip: You can attach images or log files by clicking this area to highlight it and then dragging files in.
+  validations:
+    required: false
+- type: checkboxes
+  attributes:
+    label: Are you going to work on this?
+    description: 
+    options:
+      - label: If I'm planning to work on this bug, I added myself to the `Assignees` to facilitate tracking who is working on this.
+        required: false
