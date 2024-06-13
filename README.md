@@ -4,7 +4,7 @@ El objetivo de este repositorio es implementar una pipeline en nextflow para det
 
 ## ¿Cómo participar?
 
-En primer lugar, es necesario entrar en nuestros canales de [slack](https://join.slack.com/t/bioinfo2021wp2/shared_invite/zt-r3pt4pgg-dDiXcO4ZiJbFbIls73uBVg) y contactar con los coordinadores de los WPs: Carlos Ruiz ([carlos.ruiza@upf.edu](mailto:carlos.ruiza@upf.edu)), Pablo Mínguez ([pablo.minguez@quironsalud.es](mailto:pablo.minguez@quironsalud.es)) y Daniel López ([daniel.lopez.lopez@juntadeandalucia.es](mailto:daniel.lopez.lopez@juntadeandalucia.es)). Para colaborar, será necesario solicitar una invitación para poder  subir cambios al repositorio. 
+En primer lugar, es necesario entrar en nuestros canales de [slack](https://join.slack.com/t/bioinfo2021wp2/shared_invite/zt-r3pt4pgg-dDiXcO4ZiJbFbIls73uBVg) y contactar con los coordinadores de los WPs: Carlos Ruiz ([cruizarenas@unav.es](mailto:cruizarenas@unav.es)), Pablo Mínguez ([pablo.minguez@quironsalud.es](mailto:pablo.minguez@quironsalud.es)) y Daniel López ([daniel.lopez.lopez@juntadeandalucia.es](mailto:daniel.lopez.lopez@juntadeandalucia.es)). Para colaborar, será necesario solicitar una invitación para poder  subir cambios al repositorio. 
 
 La metodología de trabajo consiste en realizar diferentes tares que se encuentran en el apartado [issues](https://github.com/yocra3/structural_variants_ciberer/issues). Los issues están clasificados en tres categorías principales.
 
