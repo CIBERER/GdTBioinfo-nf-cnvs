@@ -1,0 +1,17 @@
+{
+  "name": "nf-core/structuralvariantsciberer",
+  "homePage": "https://github.com/nf-core/structuralvariantsciberer",
+  "repos": {
+    "https://github.com/nf-core/modules.git": {
+      "modules": {
+        "nf-core": {
+          "bedtools/subtract": {
+            "branch": "master",
+            "git_sha": "3b248b84694d1939ac4bb33df84bf6233a34d668",
+            "installed_by": ["modules"]
+          }
+        }
+      }
+    }
+  }
+}
