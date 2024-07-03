@@ -5,6 +5,11 @@
     "https://github.com/nf-core/modules.git": {
       "modules": {
         "nf-core": {
+          "bedtools/merge": {
+            "branch": "master",
+            "git_sha": "a5377837fe9013bde89de8689829e83e84086536",
+            "installed_by": ["modules"]
+          },
           "bedtools/subtract": {
             "branch": "master",
             "git_sha": "3b248b84694d1939ac4bb33df84bf6233a34d668",
