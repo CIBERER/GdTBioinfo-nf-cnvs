@@ -24,6 +24,11 @@
             "branch": "master",
             "git_sha": "3b248b84694d1939ac4bb33df84bf6233a34d668",
             "installed_by": ["modules"]
+          },
+          "gridss/gridss": {
+            "branch": "master",
+            "git_sha": "c34921483819e7bb6d0f914aab79315cd8f0e071",
+            "installed_by": ["modules"]
           }
         }
       }
