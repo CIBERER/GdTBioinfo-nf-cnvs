@@ -18,7 +18,7 @@ process COUNTEXOMEDEPTH {
     //               https://github.com/nf-core/modules/blob/master/modules/nf-core/bwa/index/main.nf
     // TODO nf-core: Where applicable please provide/convert compressed files as input/output
     //               e.g. "*.fastq.gz" and NOT "*.fastq", "*.bam" and NOT "*.sam" etc.
-    tuple val(meta_cohort), path(bams, stageAs: 'input_bams/*'), path(bed_file), path(fasta_file)
+    tuple val(meta_cohort), path(bams, stageAs: 'input_bams/*'), path(bed_file, stageAs: bed_file.name), path(fasta_file, stageAs: fasta_file.name)
 
     output:
     // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
@@ -46,8 +46,8 @@ process COUNTEXOMEDEPTH {
     mv Exome_Depth1.Rdata ${prefix}.Rdata
 
     # Version gathering
-    R_VERSION=\\$(R --version | head -n 1 | sed 's/R version \\\\([^ ]*\\\\) .*/\\\\1/')
-    EXOMEDEPTH_VERSION=\\$(Rscript -e "library(ExomeDepth); cat(as.character(packageVersion('ExomeDepth')))" | sed -e 's/\\\\[1\\\\] \\"//' -e 's/\\"//')
+    R_VERSION=\$(R --version | head -n 1 | sed 's/R version \\\\([^ ]*\\\\) .*/\\\\1/')
+    EXOMEDEPTH_VERSION=\$(Rscript -e "library(ExomeDepth); cat(as.character(packageVersion('ExomeDepth')))" | sed -e 's/\\\\\\\\[1\\\\\\\\] \\\\\"//' -e 's/\\\\\"//')
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
