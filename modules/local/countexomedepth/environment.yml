@@ -4,4 +4,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - "YOUR-TOOL-HERE"
+  - r-base>=4.3.0
+  - bioconductor-exomedepth>=1.1.16
+  - r-dplyr
+  - r-readr

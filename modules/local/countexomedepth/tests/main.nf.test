@@ -15,15 +15,32 @@
             when {
                 process {
                     """
-                    input[0] = [
-                        [ id:'test_brca1_cnv_cohort' ], // meta_cohort map
+                    // 1. prefix (val)
+                    input[0] = "test_brca1_cnv_cohort"
+                    
+                    // 2. script (path)
+                    input[1] = "${projectDir}/bin/countexomedepth.R"
+                    
+                    // 3. [meta_cohort, bams] (tuple)
+                    input[2] = [
+                        [ id:'test_brca1_cnv_cohort' ],
                         [
-                            file("${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam", checkIfExists: true),
-                            file("${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam", checkIfExists: true)
-                            // Add more BAM files from your tests/data directory if needed
-                        ], // bams list
-                        file("${projectDir}/tests/data/regions.bed", checkIfExists: true), // bed_file
-                        file("${projectDir}/tests/data/chr17.fa", checkIfExists: true)      // fasta_file
+                            "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam.bai",
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam.bai",
+                            "${projectDir}/tests/data/HG01702.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01702.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam.bai"
+                        ]
+                    ]
+                    
+                    // 4. bed (path)
+                    input[3] = "${projectDir}/tests/data/regions.bed"
+                    
+                    // 5. fasta y fai (tuple o path)
+                    input[4] = [
+                        "${projectDir}/tests/data/chr17.fa",
+                        "${projectDir}/tests/data/chr17.fa.fai"
                     ]
                     """
                 }
@@ -33,7 +50,7 @@
                 assertAll(
                     { assert process.success },
                     // Snapshot the path of the Rdata file
-                    { assert snapshot(process.out.rdata.get(0).get(1).name).match("rdata_filename") },
+                    { assert snapshot(new File(process.out.count_exomedepth_rdata.get(0).get(1)).name).match("rdata_filename") },
                     // Snapshot the versions.yml file
                     { assert snapshot(process.out.versions.get(0)).match("versions_yml") }
                 )
@@ -46,15 +63,19 @@
             when {
                 process {
                     """
-                    input[0] = [
-                        [ id:'test_brca1_cnv_cohort_stub' ], // meta_cohort map
+                    input[0] = "test_brca1_cnv_cohort"
+                    input[1] = "${projectDir}/bin/countexomedepth.R"
+                    input[2] = [
+                        [ id:'test_brca1_cnv_cohort_stub' ],
                         [
-                            file("${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam", checkIfExists: true),
-                            file("${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam", checkIfExists: true)
-                        ], // bams list
-                        file("${projectDir}/tests/data/regions.bed", checkIfExists: true), // bed_file
-                        file("${projectDir}/tests/data/chr17.fa", checkIfExists: true)      // fasta_file
+                            "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam.bai",
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam.bai"
+                        ]
                     ]
+                    input[3] = "${projectDir}/tests/data/regions.bed"
+                    input[4] = "${projectDir}/tests/data/chr17.fa"
                     """
                 }
             }
@@ -63,7 +84,7 @@
                 assertAll(
                     { assert process.success },
                     // Snapshot the path of the Rdata file for stub
-                    { assert snapshot(process.out.rdata.get(0).get(1).name).match("rdata_filename_stub") },
+                    { assert snapshot(new File(process.out.count_exomedepth_rdata.get(0).get(1)).name).match("rdata_filename_stub") },
                     // Snapshot the versions.yml file for stub
                     { assert snapshot(process.out.versions.get(0)).match("versions_yml_stub") }
                 )
