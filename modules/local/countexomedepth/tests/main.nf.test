@@ -15,14 +15,8 @@
             when {
                 process {
                     """
-                    // 1. prefix (val)
-                    input[0] = "test_brca1_cnv_cohort"
-                    
-                    // 2. script (path)
-                    input[1] = "${projectDir}/bin/countexomedepth.R"
-                    
-                    // 3. [meta_cohort, bams] (tuple)
-                    input[2] = [
+                    // 1. [meta_cohort, bams] (tuple)
+                    input[0] = [
                         [ id:'test_brca1_cnv_cohort' ],
                         [
                             "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam",
@@ -34,14 +28,11 @@
                         ]
                     ]
                     
-                    // 4. bed (path)
-                    input[3] = "${projectDir}/tests/data/regions.bed"
+                    // 2. bed (path)
+                    input[1] = "${projectDir}/tests/data/regions.bed"
                     
-                    // 5. fasta y fai (tuple o path)
-                    input[4] = [
-                        "${projectDir}/tests/data/chr17.fa",
-                        "${projectDir}/tests/data/chr17.fa.fai"
-                    ]
+                    // 3. fasta (path)
+                    input[2] = "${projectDir}/tests/data/chr17.fa"
                     """
                 }
             }
@@ -63,19 +54,17 @@
             when {
                 process {
                     """
-                    input[0] = "test_brca1_cnv_cohort"
-                    input[1] = "${projectDir}/bin/countexomedepth.R"
-                    input[2] = [
-                        [ id:'test_brca1_cnv_cohort_stub' ],
+                    input[0] = [
+                        [ id:'test_brca1_cnv_cohort' ],
                         [
                             "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam",
                             "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam.bai",
-                            "${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam",
-                            "${projectDir}/tests/data/HG01632.mapped.ILLUMINA.bwa.IBS.exome.20121211_chr22_regions_CNV.bam.bai"
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam",
+                            "${projectDir}/tests/data/HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam.bai"
                         ]
                     ]
-                    input[3] = "${projectDir}/tests/data/regions.bed"
-                    input[4] = "${projectDir}/tests/data/chr17.fa"
+                    input[1] = "${projectDir}/tests/data/regions.bed"
+                    input[2] = "${projectDir}/tests/data/chr17.fa"
                     """
                 }
             }

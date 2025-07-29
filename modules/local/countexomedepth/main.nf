@@ -12,37 +12,31 @@ process COUNTEXOMEDEPTH {
         'quay.io/biocontainers/r-exomedepth:1.1.16--r43hfb3cda0_3' }"
 
 
-    //todos los canales pasan como un meta para pasarlos al bed y al fasta; discutir 
-
-    input:
-        val prefix
-        path script
-        tuple val(meta_cohort), path(bams)
-        path(bed)
-        path fasta_files
-
+    input: //todos los canales pasan como un meta para pasarlos al bed y al fasta; discutir 
+        tuple val(meta_cohort), path(bams) //cambiar nombres a mas cortos
+        path(bed) 
+        path(fasta)
+//el prefix (id) debe ser meta_cohort.id
     output:
     // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
-    tuple val(meta_cohort), path("${prefix}.Rdata"), emit: count_exomedepth_rdata
+    tuple val(meta_cohort), path("${meta_cohort.id}.Rdata"), emit: count_exomedepth_rdata // mas descriptivo rdata porque se va a usar en el subworkflow
     // TODO nf-core: List additional required output channels/values here
     path "versions.yml", emit: versions
-
+//Revisar prefix porque no se van a sobreescribir los archivos porque están en las carpetas no introducir en el input
     when:
     task.ext.when == null || task.ext.when
 
-    // Define el prefijo aquí para que sea visible en `output`
-    //def prefix = task.ext.prefix ?: (meta_cohort && meta_cohort.id ? meta_cohort.id : "default_process_id")
-
     script:
+    //nextflow.enable.moduleBinaries = true 
+    //borrar todo al cambiar path por val por los enlaces simbolicos 
     """
-    Rscript $script \\
-        $prefix \\
+    Rscript ${projectDir}/bin/countexomedepth.R \\
         $bed \\
-        ${fasta_files[0]} \\
+        $fasta \\
         $bams
 
-    # El script R ahora se encarga de guardar el archivo con el nombre correcto.
-    # No necesitas mv Exome_Depth1.Rdata "${prefix}.Rdata"
+    # Following nf-core pattern: script generates fixed filename, Nextflow handles final naming
+    mv ExomeCount.Rdata ${meta_cohort.id}.Rdata
 
     # Version gathering
     R_VERSION=\$(R --version | head -n 1 | sed 's/R version \\([^ ]*\\) .*/\\1/')
@@ -54,9 +48,10 @@ process COUNTEXOMEDEPTH {
         bioconductor-exomedepth: \$EXOMEDEPTH_VERSION
     END_VERSIONS
     """
+    //cambiar el nombre de prefix en el fichero de R y dejar fijo para que se carge sin cambiar aquí
     stub:
     """
-    touch "${prefix}.Rdata"
+    touch "${meta_cohort.id}.Rdata"
     touch versions.yml
     """
 }

@@ -9,10 +9,9 @@ library(Biostrings)
 
 args=commandArgs(trailingOnly = T) #string vector arg witch contains the entries at command lines
 
-prefix <- args[1]
-bed_file <- args[2]
-fasta_file <- args[3]
-all_bam_related_files <- args[4:length(args)]
+bed_file <- args[1]
+fasta_file <- args[2]
+all_bam_related_files <- args[3:length(args)]
 
 # Filter the arguments to only select .bam files.
 # The .bai files will be in the work directory but won't be processed directly.
@@ -37,6 +36,7 @@ colnames(my_bed) <- c("chromosome", "start", "end", "name")
 my_bed_granges <- GRanges(seqnames = my_bed$chromosome,
                           ranges = IRanges(start = my_bed$start + 1, end = my_bed$end))
 
+
 # 2. Open the reference FASTA file
 reference_fasta <- FaFile(file = fasta_file)
 
@@ -55,6 +55,7 @@ all.counts <- getBamCounts(bed.frame = my_bed,
 ExomeCount <- all.counts
 ExomeCount <- as(ExomeCount, 'data.frame')
 
-save(ExomeCount, file = paste0(prefix, ".Rdata"))
+# Generate fixed filename following nf-core pattern - Nextflow will handle renaming
+save(ExomeCount, file = "ExomeCount.Rdata")
 
 
