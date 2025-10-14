@@ -3,7 +3,7 @@
 # load packages
 library(ExomeDepth)
 library(dplyr)
-library(readr)
+# library(readr)  # Using base R write.csv instead
 
 data(ExomeCount)
 
@@ -65,7 +65,9 @@ my.test=as.numeric(my.test_1)
 
 
 my.reference.set <- as.matrix(ExomeCount.dafr %>% select(-all_of(sampname)))
-my.reference.set <- my.reference.set[,6:ncol(my.reference.set)]
+# Dynamically find count columns (after chromosome, start, end, exon, gc.content)
+count_columns <- 5:ncol(my.reference.set)  # Start from column 5 (after region info)
+my.reference.set <- my.reference.set[,count_columns]
 my.reference.set <- apply(my.reference.set, 2, as.numeric)
 my.reference.set <- as.matrix(my.reference.set)
 my.choice <- select.reference.set(test.counts = my.test,
@@ -114,4 +116,4 @@ results <- add_sample_id_to_results(results, all.exons@CNV.calls, sampname)
 message('\n[INFO] Writting results')
 # output.file <- paste0("batch_", 123, ".exomeDepth.csv")
 # write.csv(file = output.file, x = results, row.names = FALSE)
-write_csv(results,"Results_EXOMEDEPTH.csv")
+write.csv(results, "Results_EXOMEDEPTH.csv", row.names = FALSE)

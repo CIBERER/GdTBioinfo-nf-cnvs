@@ -52,10 +52,21 @@ all.counts <- getBamCounts(bed.frame = my_bed,
                            bam.files = bam_files,
                            include.chr = FALSE)
 
-ExomeCount <- all.counts
-ExomeCount <- as(ExomeCount, 'data.frame')
+# Prepare optimized data structures for module 2 (callexomedepth)
+# Only export what's needed: dataframe and matrix, no BAM paths
 
-# Generate fixed filename following nf-core pattern - Nextflow will handle renaming
-save(ExomeCount, file = "ExomeCount.Rdata")
+# 1. ExomeCount.dafr: Complete dataframe with regions + counts
+ExomeCount.dafr <- as.data.frame(all.counts)
+# Rename 'name' column to 'exon' as expected by module 2
+colnames(ExomeCount.dafr)[colnames(ExomeCount.dafr) == "name"] <- "exon"
+
+# 2. ExomeCount.mat: Numeric matrix of counts only (exclude region info)
+# Extract only the count columns (typically from column 6 onwards after: chr, start, end, exon, gc.content)
+count_columns <- 6:ncol(ExomeCount.dafr)
+ExomeCount.mat <- as.matrix(ExomeCount.dafr[, count_columns])
+
+# Save optimized data: only dataframe and matrix, no BAM paths
+# This reduces file size and avoids redundancy with Nextflow BAM management
+save(ExomeCount.dafr, ExomeCount.mat, file = "ExomeCount.Rdata")
 
 
