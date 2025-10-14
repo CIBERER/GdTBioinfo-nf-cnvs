@@ -1,0 +1,26 @@
+digraph "pipeline_dag_20251014_111551" {
+v0 [shape=point,label="",fixedsize=true,width=0.1,xlabel="Channel.of"];
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v0 -> v1;
+
+v1 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="map"];
+v3 [label="CALLEXOMEDEPTH"];
+v1 -> v3 [label="individual_samples"];
+
+v2 [shape=point,label="",fixedsize=true,width=0.1];
+v3 [label="CALLEXOMEDEPTH"];
+v2 -> v3 [label="exome_count_matrix"];
+
+v3 [label="CALLEXOMEDEPTH"];
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="view"];
+v3 -> v5;
+
+v3 [label="CALLEXOMEDEPTH"];
+v4 [shape=point];
+v3 -> v4;
+
+v5 [shape=circle,label="",fixedsize=true,width=0.1,xlabel="view"];
+v6 [shape=point];
+v5 -> v6;
+
+}
