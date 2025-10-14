@@ -1,0 +1,42 @@
+{
+    "versions_yml": {
+        "content": [
+            "versions.yml:md5,4ad6b31fa755c21f183dd61b08cddb5e"
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.6"
+        },
+        "timestamp": "2025-07-29T10:34:52.102797"
+    },
+    "versions_yml_stub": {
+        "content": [
+            "versions.yml:md5,d41d8cd98f00b204e9800998ecf8427e"
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.6"
+        },
+        "timestamp": "2025-07-29T10:31:43.310828"
+    },
+    "cnv_csv_filename": {
+        "content": [
+            "HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam_exomedepth.csv"
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.6"
+        },
+        "timestamp": "2025-07-29T10:34:52.097796"
+    },
+    "cnv_csv_filename_stub": {
+        "content": [
+            "HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam_exomedepth.csv"
+        ],
+        "meta": {
+            "nf-test": "0.9.2",
+            "nextflow": "24.10.6"
+        },
+        "timestamp": "2025-07-29T10:31:43.306058"
+    }
+}

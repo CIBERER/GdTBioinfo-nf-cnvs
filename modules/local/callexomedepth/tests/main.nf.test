@@ -1,0 +1,67 @@
+// TODO nf-core: Once you have added the required tests, please run the following command to build this file:
+// nf-core modules test callexomedepth
+nextflow_process {
+
+    name "Test Process CALLEXOMEDEPTH - individual sample CNV calling"
+    script "../main.nf"
+    process "CALLEXOMEDEPTH"
+
+    tag "modules"
+    tag "modules_local"
+    tag "callexomedepth"
+    tag "exomedepth_cnv"
+
+    test("individual sample - full test") {
+
+        when {
+            process {
+                """
+                // 1. exome_count_matrix (path) - real output from COUNTEXOMEDEPTH module
+                input[0] = "${projectDir}/tests/data/test_exome_count_matrix.Rdata"
+                
+                // 2. [meta, bam] (tuple) - individual sample with exact name from matrix
+                input[1] = [
+                    [ id:'HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam' ],
+                    "${projectDir}/tests/data/HG01516.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam"
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                // Snapshot the CSV output filename
+                { assert snapshot(new File(process.out.cnv_calls.get(0).get(1)).name).match("cnv_csv_filename") },
+                // Snapshot the versions.yml file
+                { assert snapshot(process.out.versions.get(0)).match("versions_yml") }
+            )
+        }
+    }
+
+    test("individual sample - stub") {
+        options "-stub"
+
+        when {
+            process {
+                """
+                input[0] = "${projectDir}/tests/data/test_exome_count_matrix.Rdata"
+                input[1] = [
+                    [ id:'HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam' ],
+                    "${projectDir}/tests/data/HG01632.mapped.ILLUMina.bwa.IBS.exome.20121211_chr22_regions_CNV.bam"
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                // Snapshot the CSV output filename for stub
+                { assert snapshot(new File(process.out.cnv_calls.get(0).get(1)).name).match("cnv_csv_filename_stub") },
+                // Snapshot the versions.yml file for stub
+                { assert snapshot(process.out.versions.get(0)).match("versions_yml_stub") }
+            )
+        }
+    }
+}

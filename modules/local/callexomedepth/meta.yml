@@ -1,0 +1,51 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json
+name: "callexomedepth"
+description: Call CNVs from ExomeDepth count matrix for individual samples
+keywords:
+  - cnv
+  - exomedepth
+  - structural variants
+  - copy number
+  - exome
+tools:
+  - "exomedepth":
+      description: "R package for calling copy number variants from exome sequencing data"
+      homepage: "https://cran.r-project.org/web/packages/ExomeDepth/index.html"
+      documentation: "https://cran.r-project.org/web/packages/ExomeDepth/ExomeDepth.pdf"
+      tool_dev_url: "https://github.com/vplagnol/ExomeDepth"
+      doi: "10.1093/bioinformatics/bts526"
+      licence: "GPL-3"
+
+input:
+  - exome_count_matrix:
+      type: file
+      description: Count matrix from COUNTEXOMEDEPTH module in .Rdata format
+      pattern: "*.{Rdata,rdata,RData}"
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - bam:
+      type: file
+      description: BAM file for individual sample analysis
+      pattern: "*.bam"
+
+output:
+  - meta:
+      type: map
+      description: |
+        Groovy Map containing sample information
+        e.g. [ id:'test', single_end:false ]
+  - cnv_calls:
+      type: file
+      description: CSV file containing CNV calls for the sample
+      pattern: "*_exomedepth.csv"
+  - versions:
+      type: file
+      description: File containing software versions
+      pattern: "versions.yml"
+
+authors:
+  - "@ciberer"
