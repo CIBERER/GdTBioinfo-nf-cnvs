@@ -1,0 +1,2 @@
+"start.p","end.p","type","nexons","start","end","chromosome","id","BF","reads.expected","reads.observed","reads.ratio","sample_id"
+14,14,"duplication",1,41243452,41246877,"17","chr17:41243452-41246877",1.26,4535,5679,1.25,"HG01518.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam"

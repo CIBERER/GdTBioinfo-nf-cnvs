@@ -1,0 +1,2 @@
+"start.p","end.p","type","nexons","start","end","chromosome","id","BF","reads.expected","reads.observed","reads.ratio","sample_id"
+20,20,"deletion",1,41258473,41258550,"17","chr17:41258473-41258550",3.74,75,0,0,"HG01695.mapped.ILLUMINA.bwa.IBS.exome.20120522_chr22_regions_CNV.bam"
