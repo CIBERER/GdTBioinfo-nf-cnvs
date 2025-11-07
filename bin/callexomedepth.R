@@ -14,10 +14,21 @@ args=commandArgs(trailingOnly = T)
 inputList_2 <- args
 load(inputList_2[1])
 
-
-
 sampname <- inputList_2[2]
-print(sampname)
+
+# Validate that sample exists in count matrix
+if (!sampname %in% colnames(ExomeCount.dafr)) {
+  message("\n[ERROR] Sample '", sampname, "' not found in count matrix!")
+  message("[ERROR] Available columns: ", paste(colnames(ExomeCount.dafr), collapse = ", "))
+  stop(paste0("Sample '", sampname, "' not found in count matrix columns!"))
+}
+
+# OPTIONAL DEBUG: Uncomment lines below for detailed diagnostics
+# message("\n=== DIAGNOSTIC INFO ===")
+# message(paste0("[DEBUG] Sample name: '", sampname, "'"))
+# message("[DEBUG] Available columns: ", paste(colnames(ExomeCount.dafr), collapse = ", "))
+# message("[DEBUG] ✅ Sample column found in matrix!")
+# message("======================\n")
 results <- data.frame(matrix(ncol = 12, nrow = 0))
 colnames(results) <- c("start.p", "end.p", "type", "nexons", "start", "end", 
                        "chromosome", "id", "BF", "reads.expected", "reads.observed", "reads.ratio")  # Añadir nombres correctos

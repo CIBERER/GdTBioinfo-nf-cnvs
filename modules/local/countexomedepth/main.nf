@@ -13,7 +13,7 @@ process COUNTEXOMEDEPTH {
 
 
     input: //todos los canales pasan como un meta para pasarlos al bed y al fasta; discutir 
-        tuple val(meta_cohort), path(bams) //cambiar nombres a mas cortos
+        tuple val(meta_cohort), path(bams) // Lista de archivos BAM/BAI
         path(bed) 
         path(fasta)
 //el prefix (id) debe ser meta_cohort.id
@@ -30,6 +30,8 @@ process COUNTEXOMEDEPTH {
     //nextflow.enable.moduleBinaries = true 
     //borrar todo al cambiar path por val por los enlaces simbolicos 
     """
+    
+    # Ejecutar R script con todos los BAMs
     Rscript ${projectDir}/bin/countexomedepth.R \\
         $bed \\
         $fasta \\

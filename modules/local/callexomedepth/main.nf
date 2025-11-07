@@ -29,8 +29,8 @@ process CALLEXOMEDEPTH {
         'quay.io/biocontainers/r-exomedepth:1.1.16--r43hfb3cda0_3' }"
 
     input:
-    path(exome_count_matrix) // .Rdata file from COUNTEXOMEDEPTH module
-    tuple val(meta), path(bam) // Individual sample to analyze
+    path(exome_count_matrix) // .Rdata file from COUNTEXOMEDEPTH module (value_channel - to used across all samples)
+    tuple val(meta), path(bam) // Individual sample to analyze (Queue channel - parallelizable)
 
     output:
     // TODO nf-core: Named file extensions MUST be emitted for ALL output channels
